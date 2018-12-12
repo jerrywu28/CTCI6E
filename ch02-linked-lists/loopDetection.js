@@ -1,5 +1,3 @@
-//Implement an algorithm to return the kth to last element of a singly linked list.
-
 class Node {
   constructor(value) {
     this.value = value;
@@ -24,28 +22,22 @@ class LinkedList {
       this.tail.next = node;
       this.tail = node;
     }
-    return value;
   }
 
-  returnKthToLast(k) {
-    let counter = 0;
+  detectLoop() {
     let pointer1 = this.head;
     let pointer2 = this.head;
-    //Get the full length of the linkedList
-    while (pointer2 !== null) {
-      counter++;
-      pointer2 = pointer2.next;
-    }
-    //Traverse until counter === k is reached
-    if (k - counter === 0) {
-      return this.head;
-    }
-    while (pointer1 !== null) {
-      counter--
-      pointer1 = pointer1.next;
-      if (counter === k) {
-        return pointer1;
+    let initDetection = false;
+    while (pointer1 !== null || pointer2 !== null) {
+      if (pointer1.next === null || pointer2.next === null) {
+        return false;
       }
+      if (pointer1 === pointer2 && initDetection) {
+        return true;
+      }
+      initDetection = true;
+      pointer1 = pointer1.next;
+      pointer2 = pointer2.next.next;
     }
   }
 }
@@ -55,9 +47,13 @@ ll.add(1);
 ll.add(2);
 ll.add(3);
 ll.add(4);
+let storedNode = ll.tail;
 ll.add(5);
 ll.add(6);
 ll.add(7);
 ll.add(8);
 ll.add(9);
 ll.add(10);
+ll.add(11);
+ll.tail.next = storedNode;
+ll.detectLoop();
