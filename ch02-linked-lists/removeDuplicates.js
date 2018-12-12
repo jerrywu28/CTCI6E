@@ -1,4 +1,4 @@
-//Remove duplicates, no buffers
+//Remove duplicates in a singly linked list, no buffers
 //My thoughts: What does no buffers mean here?
 
 //Step 1, make a Linked List
