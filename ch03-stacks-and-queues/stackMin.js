@@ -5,7 +5,7 @@
 //I am assuming that the method only tells you what the minimum value is but does not remove it from the stack
 
 class Stack {
-  component() {
+  constructor() {
     this.stack = [];
     this.min = Infinity;
   }
